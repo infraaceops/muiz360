@@ -1,0 +1,272 @@
+<!--
+Muiz360 — Static COD ecommerce store
+Generated for: Muiz360 Electronics and Home Appliances
+Contact: WhatsApp +92 3088890755 | infraaceops@gmail.com
+Products: 10 sample products included
+
+Instructions:
+1) Save this file as `index.html`.
+2) Create a new GitHub repository (public), upload this `index.html`, then enable GitHub Pages (main / root).
+3) Test clicking "Cart → Checkout" then choose WhatsApp or Email to send the order. WhatsApp opens a prefilled message to your number, Email opens mail client.
+4) To change product info, edit the `PRODUCTS` array inside the <script> near the bottom.
+
+This single-file store is fully client-side and requires no backend. Orders are sent from the customer's device (WhatsApp or Mail client).
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Muiz360 — Electronics & Home Appliances</title>
+  <meta name="description" content="Muiz360 Electronics and Home Appliances — Free COD store hosted on GitHub Pages">
+  <style>
+    :root{--accent:#0b76ef;--bg:#f5f7fb;--card:#fff;--muted:#667}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#0b1220;margin:0;background:var(--bg)}
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    header{background:linear-gradient(90deg,var(--accent),#2ab5ff);color:white;padding:1rem 0}
+    .top{display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:800;font-size:1.25rem}
+    nav a{color:white;text-decoration:none;margin-left:.75rem;background:rgba(255,255,255,0.12);padding:.4rem .6rem;border-radius:8px}
+    .hero{display:flex;gap:1rem;align-items:center;padding:1.25rem 0}
+    .hero h1{margin:0;font-size:1.6rem}
+    .hero p{margin:.5rem 0 0;color:rgba(255,255,255,0.95)}
+    .btn{display:inline-block;background:white;color:var(--accent);padding:.5rem .9rem;border-radius:8px;text-decoration:none;font-weight:700}
+    main{padding:1.25rem 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+    .card{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 20px rgba(15,25,40,0.06)}
+    .product-image{height:160px;border-radius:10px;background-size:cover;background-position:center;margin-bottom:.75rem}
+    .price{font-weight:700;color:var(--accent);margin-top:.5rem}
+    .muted{color:var(--muted)}
+    footer{padding:1.25rem 0;text-align:center;color:var(--muted)}
+    .cart-bar{position:fixed;right:1rem;bottom:1rem;background:var(--card);padding:.75rem;border-radius:12px;box-shadow:0 12px 30px rgba(5,10,20,0.12);min-width:260px}
+    .cart-items{max-height:220px;overflow:auto;margin-bottom:.5rem}
+    .flex{display:flex;gap:.5rem;align-items:center}
+    input[type="number"]{width:64px}
+    .checkout-actions{display:flex;gap:.5rem}
+    form label{display:block;margin:.4rem 0 .15rem;font-size:.9rem}
+    input[type="text"],input[type="tel"],textarea{width:100%;padding:.5rem;border-radius:8px;border:1px solid #e6eef8}
+    .center{text-align:center}
+    @media(max-width:640px){.hero{flex-direction:column;align-items:flex-start}.product-image{height:140px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container top">
+      <div>
+        <div class="brand">Muiz360</div>
+        <div style="font-size:.9rem;color:rgba(255,255,255,0.9)">Muiz360 Electronics and Home Appliances</div>
+      </div>
+      <nav>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a id="view-cart" href="#cart">Cart (<span id="cart-count">0</span>)</a>
+      </nav>
+    </div>
+    <div class="container hero">
+      <div>
+        <h1>Your trusted store for home electronics</h1>
+        <p>Free listing • Cash on Delivery • Fast local delivery</p>
+      </div>
+      <div style="flex:1"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="products">
+      <h2>Products</h2>
+      <div class="grid" id="product-grid">
+        <!-- products injected here -->
+      </div>
+    </section>
+
+    <section id="how" style="margin-top:1.25rem">
+      <div class="card" style="padding:1rem">
+        <h3>How ordering works</h3>
+        <ol style="margin:.5rem 0 0 .9rem;color:var(--muted)">
+          <li>Add products to cart</li>
+          <li>Click Checkout in the cart</li>
+          <li>Choose <strong>WhatsApp</strong> or <strong>Email</strong> to send your order — your phone or mail client will open with a prefilled order message</li>
+          <li>We will confirm and arrange COD delivery</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:1rem">
+      <div class="card">
+        <h3>Contact</h3>
+        <p class="muted">WhatsApp: <a href="https://wa.me/923088890755" target="_blank">+92 308 8890755</a> • Email: <a href="mailto:infraaceops@gmail.com">infraaceops@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="cart-bar" id="cart-bar" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+      <strong>Cart</strong>
+      <small class="muted">Items: <span id="cart-count-2">0</span></small>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+      <strong>Total:</strong>
+      <div class="price" id="cart-total">PKR 0</div>
+    </div>
+
+    <div style="margin-bottom:.5rem">
+      <label for="cust-name">Your name</label>
+      <input id="cust-name" placeholder="Full name" type="text">
+      <label for="cust-phone">Phone</label>
+      <input id="cust-phone" placeholder="03XXXXXXXXX" type="tel">
+      <label for="cust-address">Delivery address</label>
+      <textarea id="cust-address" rows="2" placeholder="Street, city, area"></textarea>
+    </div>
+
+    <div class="checkout-actions">
+      <button id="whatsapp-order" class="btn">Order via WhatsApp</button>
+      <button id="email-order" class="btn">Order via Email</button>
+      <button id="close-cart" style="background:#f0f2f6;color:#223;padding:.4rem .6rem;border-radius:8px">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div class="muted">© Muiz360</div>
+        <div class="muted">Built for free — host on GitHub Pages</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ************ PRODUCT DATA ************
+    const PRODUCTS = [
+      {id:1,title:'Muiz360 32" LED TV',price:29999,desc:'32 inch HD Smart LED TV',img:'https://aws-obg-image-lb-2.tcl.com/content/dam/brandsite/product/tv/s/s5400/id-image/32/32-1.png?t=1672124805609&w=800'},
+      {id:2,title:'Muiz360 Blender 700W',price:4999,desc:'Multi-speed blender with glass jar',img:'https://images.philips.com/is/image/philipsconsumer/vrs_34cb833e932d60cad5860a8d383ca0add3c0fe9a?&wid=618&hei=618&$jpglarge$'},
+      {id:3,title:'Muiz360 Air Fryer 3L',price:7999,desc:'Healthy oil-free fryer',img:'https://m.media-amazon.com/images/G/02/apparel/rcxgs/tile._CB483369956_.gif'},
+      {id:4,title:'Muiz360 Microwave 20L',price:8999,desc:'Compact microwave with grill',img:'https://www.questappliances.com/wp-content/uploads/2023/05/1-14.jpg'},
+      // {id:5,title:'Muiz360 Vacuum Cleaner',price:5999,desc:'Handheld vacuum with HEPA filter',img:'https://picsum.photos/seed/vacuum/600/400'},
+      // // {id:6,title:'Muiz360 Mixer Grinder',price:4499,desc:'3-in-1 mixer grinder',img:'https://picsum.photos/seed/mixer/600/400'},
+      // // {id:7,title:'Muiz360 Electric Kettle 1.7L',price:2499,desc:'Auto shut-off stainless kettle',img:'https://picsum.photos/seed/kettle/600/400'},
+      // // {id:8,title:'Muiz360 LED Bulb Pack (4)',price:899,desc:'Energy saving LED bulbs pack',img:'https://picsum.photos/seed/bulb/600/400'},
+      // // {id:9,title:'Muiz360 Power Bank 10000mAh',price:2599,desc:'Fast charge power bank',img:'https://picsum.photos/seed/powerbank/600/400'},
+      // // {id:10,title:'Muiz360 Iron 2200W',price:1999,desc:'Steam iron with ceramic plate',img:'https://picsum.photos/seed/iron/600/400'}
+    ];
+
+    // Local cart
+    let cart = {};
+
+    function formatPKR(n){return 'PKR ' + Number(n).toLocaleString('en-PK')}
+
+    function renderProducts(){
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = '';
+      PRODUCTS.forEach(p=>{
+        const el = document.createElement('div'); el.className='card';
+        el.innerHTML = `
+          <div class="product-image" style="background-image:url('${p.img}')"></div>
+          <div><strong>${p.title}</strong></div>
+          <div class="muted">${p.desc}</div>
+          <div class="price">${formatPKR(p.price)}</div>
+          <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center">
+            <button class="btn" onclick="addToCart(${p.id})">Add</button>
+            <button onclick="viewProduct(${p.id})" style="background:#f0f2f6;color:#223;padding:.4rem .6rem;border-radius:8px">View</button>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function addToCart(id){
+      cart[id] = (cart[id] || 0) + 1;
+      updateCartUI();
+      showCartBar();
+    }
+
+    function viewProduct(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      alert(p.title + '\n\n' + p.desc + '\n\nPrice: ' + formatPKR(p.price));
+    }
+
+    function updateCartUI(){
+      const count = Object.values(cart).reduce((s,v)=>s+v,0);
+      document.getElementById('cart-count').textContent = count;
+      document.getElementById('cart-count-2').textContent = count;
+      const items = document.getElementById('cart-items');
+      items.innerHTML = '';
+      let total = 0;
+      for(const idStr of Object.keys(cart)){
+        const id = Number(idStr); const qty = cart[id];
+        const p = PRODUCTS.find(x=>x.id===id);
+        const row = document.createElement('div'); row.style.marginBottom='.6rem';
+        row.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>${p.title}</strong><div class=\"muted\">${formatPKR(p.price)} x ${qty}</div></div><div style=\"text-align:right\"><input type=\"number\" min=0 value=${qty} onchange=\"changeQty(${id},this.value)\" style=\"width:60px;padding:.25rem;border-radius:6px;border:1px solid #e6eef8\"><div style=\"margin-top:.4rem;color:var(--muted)\"><a href=\"#\" onclick=\"removeItem(${id});return false\">Remove</a></div></div></div>`;
+        items.appendChild(row);
+        total += p.price * qty;
+      }
+      document.getElementById('cart-total').textContent = formatPKR(total);
+    }
+
+    function changeQty(id,val){
+      val = Number(val);
+      if(val<=0){ delete cart[id]; } else { cart[id]=val; }
+      updateCartUI();
+    }
+    function removeItem(id){ delete cart[id]; updateCartUI(); }
+
+    function showCartBar(){
+      const bar = document.getElementById('cart-bar'); bar.style.display='block';
+      document.getElementById('view-cart').scrollIntoView({behavior:'smooth'});
+    }
+
+    document.getElementById('view-cart').addEventListener('click', (e)=>{ e.preventDefault(); showCartBar(); });
+    document.getElementById('close-cart').addEventListener('click', ()=>{ document.getElementById('cart-bar').style.display='none' });
+
+    // Order via WhatsApp
+    const WH_NUMBER = '923088890755'; // international format without + (replaced leading 0 with 92)
+    const EMAIL_TO = 'infraaceops@gmail.com';
+
+    function buildOrderMessage(){
+      const custName = document.getElementById('cust-name').value.trim();
+      const custPhone = document.getElementById('cust-phone').value.trim();
+      const custAddr = document.getElementById('cust-address').value.trim();
+      if(!custName||!custPhone||!custAddr){ alert('Please enter name, phone and address before ordering.'); return null; }
+      let lines = [];
+      lines.push('New order from Muiz360');
+      lines.push('Customer: ' + custName);
+      lines.push('Phone: ' + custPhone);
+      lines.push('Address: ' + custAddr);
+      lines.push('');
+      lines.push('Items:');
+      let total=0;
+      for(const idStr of Object.keys(cart)){
+        const id = Number(idStr); const qty = cart[id];
+        const p = PRODUCTS.find(x=>x.id===id);
+        lines.push('- ' + p.title + ' x ' + qty + ' @ ' + formatPKR(p.price) + ' = ' + formatPKR(p.price*qty));
+        total += p.price*qty;
+      }
+      lines.push('');
+      lines.push('Total: ' + formatPKR(total));
+      lines.push('Payment: Cash on Delivery');
+      return lines.join('\n');
+    }
+
+    document.getElementById('whatsapp-order').addEventListener('click', ()=>{
+      const msg = buildOrderMessage(); if(!msg) return;
+      const encoded = encodeURIComponent(msg);
+      const url = `https://wa.me/${WH_NUMBER}?text=${encoded}`;
+      window.open(url,'_blank');
+    });
+
+    document.getElementById('email-order').addEventListener('click', ()=>{
+      const msg = buildOrderMessage(); if(!msg) return;
+      const subject = encodeURIComponent('New Order — Muiz360');
+      const body = encodeURIComponent(msg);
+      const mailto = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+
+    // initialize
+    renderProducts(); updateCartUI();
+
+  </script>
+</body>
+</html>
